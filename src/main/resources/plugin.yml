@@ -1,0 +1,8 @@
+name: mmoLore
+version: '1.0.0'
+main: net.azisaba.mmoLore.SpigotPlugin
+api-version: '1.21'
+load: POSTWORLD
+depend:
+  - MythicMobs
+  - packetevents
