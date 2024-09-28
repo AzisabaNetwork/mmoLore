@@ -21,7 +21,7 @@ repositories {
 }
 
 dependencies {
-    compileOnly(libs.io.papermc.paper.paper.api)
+    compileOnly("io.papermc.paper:paper-api:1.21.1-R0.1-SNAPSHOT")
     compileOnly("io.lumine:Mythic-Dist:5.7.1")
     compileOnly("org.jetbrains:annotations:24.1.0")
     compileOnly("com.github.retrooper:packetevents-spigot:2.5.0")
