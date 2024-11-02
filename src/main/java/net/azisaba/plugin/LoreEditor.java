@@ -1,4 +1,4 @@
-package net.azisaba.mmoLore;
+package net.azisaba.plugin;
 
 import com.github.retrooper.packetevents.event.PacketListenerPriority;
 import com.github.retrooper.packetevents.event.SimplePacketListenerAbstract;
@@ -13,10 +13,15 @@ import com.github.retrooper.packetevents.wrapper.play.server.WrapperPlayServerSe
 import com.github.retrooper.packetevents.wrapper.play.server.WrapperPlayServerWindowItems;
 import io.github.retrooper.packetevents.util.SpigotConversionUtil;
 import io.lumine.mythic.bukkit.MythicBukkit;
-import net.azisaba.mmoLore.nms.ItemLoreHandler;
+import org.bukkit.Bukkit;
+import org.bukkit.Material;
+import org.bukkit.NamespacedKey;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.persistence.PersistentDataType;
+import org.bukkit.plugin.Plugin;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.*;
 
@@ -111,9 +116,40 @@ public class LoreEditor extends SimplePacketListenerAbstract {
 
     public ItemStack removeCustomLore(ItemStack item) {
         if (item == null || item.getType().isAir() || !item.hasItemMeta()) return item;
-        String mmid = MythicBukkit.inst().getItemManager().getMythicTypeFromItem(item);
+        String mmid = getMythicID(item);
         if (mmid == null) return item;
 
-        return ItemLoreHandler.removeTagInLore(item, MythicBukkit.inst().getItemManager().getItemStack(mmid));
+        return ItemLoreHandler.removeTagInLore(item, getMythicItemStack(mmid));
+    }
+
+    private String getMythicID(ItemStack item) {
+        if (isMythicEnabled()) {
+            return MythicBukkit.inst().getItemManager().getMythicTypeFromItem(item);
+        } else {
+            return item.getItemMeta().getPersistentDataContainer().
+                    get(new NamespacedKey("mythicmobs", "type"), PersistentDataType.STRING);
+        }
+    }
+
+    private ItemStack getMythicItemStack(String mmid) {
+        return getMythicItemStack(mmid, 1);
+    }
+
+    @Nullable
+    private ItemStack getMythicItemStack(String mmid, int amount) {
+        if (isMythicEnabled()) {
+            return MythicBukkit.inst().getItemManager().getItemStack(mmid, amount);
+        } else {
+            try {
+                return new ItemStack(Material.valueOf(mmid.toUpperCase()), amount);
+            } catch (IllegalArgumentException e) {
+                return null;
+            }
+        }
+    }
+
+    private boolean isMythicEnabled() {
+        Plugin p = Bukkit.getPluginManager().getPlugin("MythicMobs");
+        return p != null && p.isEnabled();
     }
 }

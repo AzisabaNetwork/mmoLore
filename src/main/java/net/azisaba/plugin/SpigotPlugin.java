@@ -1,11 +1,10 @@
-package net.azisaba.mmoLore;
+package net.azisaba.plugin;
 
 import com.github.retrooper.packetevents.PacketEvents;
 import io.github.retrooper.packetevents.factory.spigot.SpigotPacketEventsBuilder;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public final class SpigotPlugin extends JavaPlugin {
-
 
     @Override
     public void onLoad() {

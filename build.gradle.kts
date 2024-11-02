@@ -6,7 +6,6 @@ plugins {
     `java-library`
     `maven-publish`
     id("io.github.goooler.shadow") version "8.1.8"
-    id("io.papermc.paperweight.userdev") version "1.7.2"
 
 }
 
@@ -21,17 +20,15 @@ repositories {
 }
 
 dependencies {
-    compileOnly("io.papermc.paper:paper-api:1.21.1-R0.1-SNAPSHOT")
+    compileOnly("io.papermc.paper:paper-api:1.20.6-R0.1-SNAPSHOT")
     compileOnly("io.lumine:Mythic-Dist:5.7.1")
     compileOnly("org.jetbrains:annotations:24.1.0")
     compileOnly("com.github.retrooper:packetevents-spigot:2.5.0")
-
-    paperweight.paperDevBundle("1.21.1-R0.1-SNAPSHOT")
 }
 
 group = "net.azisaba"
 version = "1.0.0"
-description = "mmoLore"
+description = "ItemLoreLib"
 
 java {
     toolchain.languageVersion.set(JavaLanguageVersion.of(21))
@@ -46,5 +43,5 @@ publishing {
 tasks {
     withType<JavaCompile> { options.encoding = "UTF-8" }
     withType<Javadoc> { options.encoding = "UTF-8" }
-    base.archivesName.set("mmoLore")
+    base.archivesName.set("ItemLoreLib")
 }

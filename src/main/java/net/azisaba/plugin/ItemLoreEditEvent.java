@@ -1,4 +1,4 @@
-package net.azisaba.mmoLore;
+package net.azisaba.plugin;
 
 import org.bukkit.event.Cancellable;
 import org.bukkit.event.Event;
