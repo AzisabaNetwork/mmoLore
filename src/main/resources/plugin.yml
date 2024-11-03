@@ -1,5 +1,5 @@
 name: ItemLoreLib
-version: '1.0.1'
+version: '1.0.2'
 main: net.azisaba.plugin.SpigotPlugin
 api-version: '1.20'
 load: POSTWORLD
