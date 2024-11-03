@@ -16,12 +16,10 @@ repositories {
     maven("https://oss.sonatype.org/content/groups/public/")
     maven("https://repo.maven.apache.org/maven2/")
     maven("https://repo.codemc.io/repository/maven-releases/")
-    maven("https://mvn.lumine.io/repository/maven-public/")
 }
 
 dependencies {
     compileOnly("io.papermc.paper:paper-api:1.20.6-R0.1-SNAPSHOT")
-    compileOnly("io.lumine:Mythic-Dist:5.7.1")
     compileOnly("org.jetbrains:annotations:24.1.0")
     compileOnly("com.github.retrooper:packetevents-spigot:2.5.0")
 }
